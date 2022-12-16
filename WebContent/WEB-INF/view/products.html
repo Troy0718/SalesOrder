@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Product Managerment addproduct</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link href="resources/css/bootstrap-icons.css" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<!--  <link href="resources/css/styles.css" rel="stylesheet" /> -->
+<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- Bootstrap icons -->
+<script src="resources/js/jquery-3.6.0.slim.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<!-- navbar -->
+	<div th:insert="fragments/navbar.html"></div>
+	<!-- header -->
+	<div th:insert="fragments/header.html"></div>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="panel panel-prmary">
+			<div class="panel-heading">
+				<h3 class="panel-title">商品列表</h3>
+			</div>
+		</div>
+
+		<div class="panel-body">
+			<div class="table table-reponsive">
+				<table class="table table-bordered table-hover">
+					<tbody class="text-center">
+						<tr>
+							<th>商品ID</th>
+							<th>商品名稱</th>
+							<th>商品種類</th>
+							<th>產品線</th>
+							<th>商品價格</th>
+							<th>商品圖片</th>
+							<th>刪除</th>
+							<th>更改</th>
+						</tr>
+						<tr th:each="product:${products}">
+							<td th:text="${product.prodNum}"></td>
+							<td th:text="${product.prodName}"></td>
+							<td th:text="${product.prodType}"></td>
+							<td th:text="${product.prodLine}"></td>
+							<td th:text="${product.prodPrice}"></td>
+							<td >
+								<img class="img-thumbnail w-100 h-25 " th:src="'resources/img/'+ ${product.prodPic}" />
+								<!-- <img src="@{data:/resources/img/${prodNum}.png}" />  -->
+							</td>
+							<td><a class="btn btn-danger" th:href="@{/deleteProducts/} + ${product.prodNum}">Delete</a></td>
+
+							<td><a class="btn btn-success" th:href="@{/editProducts/} + ${product.prodNum}">Update</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
+
+	<!-- Footer-->
+	<div th:insert="fragments/footer.html"></div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

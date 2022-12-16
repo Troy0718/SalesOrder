@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Shop Homepage - Start Bootstrap Template</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" th:href="@{resources/assets/favicon.ico}" />
+<!-- Bootstrap icons-->
+<link th:href="@{/css/bootstrap-icons.css}" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+
+
+</head>
+<body>
+	<div th:insert="fragments/navbar.html"></div>
+	<div th:insert="fragments/header.html"></div>
+	<!-- Section-->
+
+	<br>
+	<br>
+	<div class="container" >
+		<div class="panel panel -primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">訂單確認</h3>
+			</div>
+			<div class="panel-body">
+				<div class="table table-responsive">
+
+
+					 <form action="#" th:action="@{/orderFinish}" method="get" th:object="${orders}"
+						>
+						<table class="table table-bordered table-hover">
+							<tbody class="text-center">
+								<tr>
+									<th>使用者名稱</th>
+									<th>訂單編號</th>
+									<th>小計</th>
+									<th>付款方式</th>
+								</tr>
+								<tr th:each="orderItem:${orders}">
+									<td th:text="${orderItem.userId}"></td>
+									<td th:text="${orderItem.ordNum}"></td>
+									<td th:text="${orderItem.amount}"></td>
+									<td><select name="payment" class="form-contorl">
+											<option
+												th:each="payment : ${T(main.model.Cart.Payment).values()}"
+												th:value="${payment}" th:text="${payment}"></option>
+									</select></td>
+									
+								</tr>
+							</tbody>
+						</table>
+						<table class="table table-bordered table-hover">
+							<tbody class="text-center">
+								<tr>
+									<th>商品編號</th>
+									<th>折扣</th>
+									<th>數量</th>
+								</tr>
+								<tr th:each="orderDetail:${orderDetailList}">
+									<td th:text="${orderDetail.prodNum}" ></td>
+									<td th:text="${orderDetail.discount}"></td>
+									<td th:text="${orderDetail.ordQty}"></td>										
+								</tr>
+
+							</tbody>
+						</table>
+
+						<div class="form-group">
+							<div class="form-row">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="submit" class="btn btn-success">確認下單</button>
+								</div>
+							</div>
+						</div>
+
+					</form>
+					<div class="row" th:if="${orders == null}">
+						<h3>No product in the order</h3>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+					<!-- ----------------------------------------------------------------------------- -->
+
+					<!-- ----------------------------------------------------------------------------- -->
+				
+	<!-- Footer-->
+	<div th:insert="fragments/footer.html"></div>
+
+
+</body>
+</html>

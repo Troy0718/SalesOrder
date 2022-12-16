@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Shop Homepage - Start Bootstrap Template</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" th:href="@{resources/assets/favicon.ico}" />
+<!-- Bootstrap icons-->
+<link th:href="@{/css/bootstrap-icons.css}" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+
+<script>
+/*
+	function putCartDetail(obj){
+		//取得路徑
+		var pathName = window.document.location.pathname;
+		//擷取,得到項目名稱
+		var projectName = pathName.substring(0,pathName(1).indexOf('/')+1);
+		window.location.href = projectName + "/deleteCart" + obj;
+	}
+*/
+</script>
+
+</head>
+<body>
+	<div th:insert="fragments/navbar.html"></div>
+	<div th:insert="fragments/header.html"></div>
+	<!-- Section-->
+	<div class="container">
+		<div clss="panel-heading">
+			<h3 class="panel-title">訂單提交成功</h3>
+		</div>
+		<div class="panel-body">
+			<div th:object="${orders}">
+				您的訂單編號為：
+				<font color="red" size="5" >
+					<!-- <span id="oid" th:text="${order.id}"></span> -->
+					
+					<span id="oid" th:text="*{ordNum}"></span>
+				</font>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+					<!-- ----------------------------------------------------------------------------- -->
+
+					<!-- ----------------------------------------------------------------------------- -->
+				</div>
+			<!-- </form> -->
+		</div>
+	</section>
+	<!-- Footer-->
+	<div th:insert="fragments/footer.html"></div>
+
+
+</body>
+</html>

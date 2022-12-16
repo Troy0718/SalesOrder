@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Shopping cart</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon"
+	href="/resources/assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link th:href="@{/css/bootstrap-icons.css}" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<!-- Bootstrap icons -->
+<link th:href="@{/css/bootstrap-icons.css}" rel="stylesheet" />
+<!-- Bootstrap js -->
+<script th:src="@{/js/jquery-3.6.0.slim.min.js}"></script>
+<script>
+	/* function deleteCart(obj) {
+		if (window.confirm("確認刪除嗎？")) {
+			//獲取路徑
+			var pathName = window.document.location.pathname;
+			//擷取，得到項目
+			var projectName = pathName.substring(0,
+					pathName(1).indexOf('/') + 1);
+			window.location.href = projectName + "/deletecartDetail" + obj;
+		}
+	}
+	function clearCart() {
+		if (window.confirm("確認清空嗎？")) {
+			//獲取路徑
+			var pathName = window.document.location.pathname;
+			//擷取，得到項目
+			var projectName = pathName.substring(0,
+					pathName(1).indexOf('/') + 1);
+			window.location.href = projectName + "/clearCart" + obj;
+		}
+	} */
+</script>
+
+</head>
+<body>
+	<!-- navbar -->
+	<div th:insert="/fragments/navbar.html"></div>
+	<!-- header -->
+	<div th:insert="/fragments/header.html"></div>
+	<br>
+	<br>
+	<div class="container">
+		<div class="panel panel -primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">購物車列表</h3>
+			</div>
+			<div class="panel-body">
+				<div class="table table-responsive">
+
+
+					<!-- <form action="#" th:action="@{/processConfirm}" method="get"
+						th:object="${cartDetails}"> -->
+						
+					<form action="#" th:action="@{/processConfirm}" method="get"
+						th:object="${cartDetails}">
+						<div class="form-group">
+							<input type="hidden" class="form-control" th:value="${id}">
+						</div>
+						<table class="table table-bordered table-hover">
+							<tbody class="text-center">
+								<tr>
+									<th>使用者名稱</th>
+									<th>購物車編號</th>
+									<th>小計</th>
+									<th>付款方式</th>
+									<th>操作</th>
+								</tr>
+								<tr th:each="cart:${cart}">
+									<td th:text="${cart.userId}"></td>
+									<td th:text="${cart.cartNum}"></td>
+									<td th:text="${cart.amount}"></td>
+									<td><select name="payment" class="form-contorl">
+											<option
+												th:each="payment : ${T(main.model.Cart.Payment).values()}"
+												th:value="${payment}" th:text="${payment}"></option>
+									</select></td>
+									<td><a class="btn btn-danger"
+										th:href="@{/clearCart/} + ${cart.cartNum}">清空購物車</a></td>
+										
+								</tr>
+							</tbody>
+						</table>
+						<table class="table table-bordered table-hover">
+							<tbody class="text-center">
+								<tr>
+									<th>商品編號</th>
+									<th>商品信息</th>
+									<th>折扣</th>
+									<th>數量</th>
+									<th>操作</th>
+								</tr>
+								<tr th:each="cartDetail:${cartDetails}">
+									<td th:text="${cartDetail.prodNum}"></td>
+									<td><img class="img-thumbnail w-25 h-25 "
+										th:src="@{'/img/'+ ${cartDetail.prodPic}}" /></td>
+									<td th:text="${cartDetail.discount}"></td>
+									<td><input type="number" class="form-contorl"
+										th:value="${cartDetail.ordQty}"></td>
+									<td><a class="btn btn-warning"
+										th:href="@{/updateCartDetail/} + ${cartDetail.id}">更新</a> 
+										<a class="btn btn-info" th:href="@{/deleteCartDetail/} + ${cartDetail.id}">刪除</a></td>
+									</tr>
+								
+							</tbody>
+						</table>
+
+						<div class="form-group">
+							<div class="form-row">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="submit" class="btn btn-success">確認訂單</button>
+								</div>
+							</div>
+						</div>
+
+					</form>
+					<div class="row" th:if="${cartDetails.empty}">
+						<h3>No product in the cart</h3>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer-->
+	<div th:insert="/fragments/footer.html"></div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+@startuml
+skinparam sequenceArrowThickness 2
+skinparam roundcorner 20
+skinparam maxmessagesize 60
+
+actor User
+participant "ProductController" as A
+participant "ProductServiceImpl" as B
+participant "ProductDAOImpl" as C
+database "MySQL_DB" as D
+
+User -> A: processForm
+activate A
+
+A -> B: saveOrUpdate()
+activate B
+
+B -> C: saveOrUpdate()
+activate C
+C -> D: save
+D --> C: result
+
+
+C --> B: void()
+deactivate C
+
+B --> A: void()
+deactivate B
+
+A --> User: redirect:/showProducts
+deactivate A
+
+
+@enduml

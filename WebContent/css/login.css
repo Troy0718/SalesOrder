@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+
+html,body{
+	background-image:url("../img/login.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100%;	
+}
+
+.container{
+	height : 100%;
+	align-content: center;
+}
+
+.card {
+	width: 350px;
+	height: auto;
+	margin-top:auto;
+	margin-bottom: auto;
+	background-color: rgba(0,0,0,0.6) !important;
+}
+
+.card-header{
+	color: white;
+	text-align: center;
+}
+
+.input-group-prepend span{
+	width: 40px;
+	background-color:blue;
+	color: white;
+	border: 0 !important;
+}
+
+.login-button{
+	color:white;
+	background-color:blue;
+	width:100%;
+}
+
+.login-button:hover{
+	color:blue;
+	backcground-color:white;
+}
+
+.footer {
+	color:white;
+}
+
+.footer a{
+	margin-left: 40px;
+}
+
+.alert-login{
+	background-color: red;
+	border : 0 !important;
+	color:white;
+}
+
+
+
+

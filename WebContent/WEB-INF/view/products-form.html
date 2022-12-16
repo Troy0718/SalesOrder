@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Product Managerment product</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link th:href="@{/css/bootstrap-icons.css}" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<!-- Bootstrap icons -->
+<link th:href="@{/css/bootstrap-icons.css}" rel="stylesheet" />
+
+
+
+</head>
+<body>
+	<!-- navbar -->
+	<div th:insert="/fragments/navbar.html"></div>
+	<!-- header -->
+	<div th:insert="/fragments/header.html"></div>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<!--添加商品表單 -->
+		<!--添加商品表單頭 enctype=multipart/form-data -->
+		<div class="bg-primary"
+			style="width: 70%; height: 60px; padding-top: 10px;">
+			<h3 align="center">處理商品</h3>
+		</div>
+		
+		<form action="#" th:action="@{/processProductsForm}" th:object="${products}"
+			method="post" class="form-horizontal"  > <!-- enctype=multipart/form-data -->
+			
+			
+			<div class="form-group">
+					<input type="hidden" class="form-control" th:field="*{prodNum}">
+				</div>
+			
+			<!--商品名稱-->
+			<div class="form-group has-success ">
+				<div class="form-row">
+					<label class="col-sm-2  control-label ">商品名稱</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" placeholder="請輸入商品名稱"
+							name="filename" th:field="*{prodName}" />
+					</div>
+				</div>
+			</div>
+
+
+			<!--商品單價-->
+			<div class="form-group has-success">
+				<div class="form-row">
+					<label class="col-sm-2 col-md-2 control-label">商品單價</label>
+					<div class="col-sm-4 col-md-4">
+						<input type="text" class="form-control" placeholder="請輸入商品單價"
+							th:field="*{prodPrice}" />
+					</div>
+				</div>
+			</div>
+
+			<!--商品線-->
+			<div class="form-group has-success">
+				<div class="form-row">
+					<label class="col-sm-2 col-md-2 control-label">商品種類</label>
+					<div class="col-sm-4 col-md-4">
+						<select name="prodLine" class="form-contorl">
+							<option
+								th:each="prodLine : ${T(main.model.Products.ProdLine).values()}"
+								th:value="${prodLine}" th:text="${prodLine}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<!--商品種類-->
+			<div class="form-group has-success">
+				<div class="form-row">
+					<label class="col-sm-2 col-md-2 control-label">商品型態</label>
+					<div class="col-sm-4 col-md-4">
+						<select name="prodType" class="form-contorl">
+							<option
+								th:each="prodType : ${T(main.model.Products.ProdType).values()}"
+								th:value="${prodType}" th:text="${prodType}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<!--商品圖片 -->
+			<div class="form-group has-success">
+				<div class="form-row">
+					<label class="col-sm-2 col-md-2 control-label">商品圖片</label>
+					<div class="col-sm-4 col-md-4">
+						<!--  <input type="file" placeholder="請選擇商品圖片" accept=".png" name="myfile" class="form-control"/>-->
+						<input type="text" placeholder="請選擇商品圖片" th:field="*{prodPic}"  name="myfile" class="form-control"/> 
+					</div>
+				</div>
+			</div>
+
+			<!--submit reset-->
+			<div class="form-group">
+				<div class="form-row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-sucseess">建立商品項目</button>						
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<!-- Footer-->
+	<div th:insert="/fragments/footer.html"></div>
+	
+</body>
+</html>
